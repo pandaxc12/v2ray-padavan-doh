@@ -2,6 +2,8 @@ on:
   push:
     tags:
       - v*
+  watch:
+    types: [started]
 
 jobs:
   build:
@@ -28,11 +30,8 @@ jobs:
           mkdir user/smartdns
           wget -P user/smartdns/ https://raw.githubusercontent.com/felix-fly/v2ray-padavan-doh/master/padavan/smartdns/Makefile
           wget https://raw.githubusercontent.com/felix-fly/v2ray-padavan-doh/master/padavan/user/Makefile -O user/Makefile
-
-          # Basic for me
-          # sed -i '$a\CONFIG_FIRMWARE_INCLUDE_SMARTDNS=y' configs/templates/K2P-5.0.config
-          fakeroot ./build_firmware_modify K2P-5.0
-          mv /opt/rt-n56u/trunk/images/*.trx /opt/bin/k2p_me.trx
+          
+          sed -i 's/CONFIG_FIRMWARE_INCLUDE_VLMCSD=n/CONFIG_FIRMWARE_INCLUDE_VLMCSD=y/' configs/templates/K2P-5.0.config
 
           # With v2ray & tproxy for others
           ./clear_tree
