@@ -50,7 +50,7 @@ jobs:
           sed -i 's/CONFIG_FIRMWARE_INCLUDE_V2RAY=y/CONFIG_FIRMWARE_INCLUDE_V2RAY=n/' configs/templates/K2P-5.0.config
           sed -i 's/CONFIG_FIRMWARE_INCLUDE_XRAY=n/CONFIG_FIRMWARE_INCLUDE_XRAY=y/' configs/templates/K2P-5.0.config
           cp configs/templates/K2P-5.0.config .config
-          fakeroot ./build_firmware_ci K2P-5.0
+          fakeroot ./build_firmware_modify K2P-5.0
           mv /opt/rt-n56u/trunk/images/*.trx /opt/bin/k2p_xray.trx
       - name: Upload artifact
         uses: "marvinpinto/action-automatic-releases@latest"
