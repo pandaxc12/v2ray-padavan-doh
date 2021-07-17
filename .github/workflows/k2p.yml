@@ -44,10 +44,9 @@ jobs:
           sudo ./clear_tree
           sudo fakeroot ./build_firmware_ci K2P-5.0
           mv /opt/rt-n56u/trunk/images/*.trx /opt/bin/k2p_xray.trx
-      - name: Upload artifact
-        uses: "marvinpinto/action-automatic-releases@latest"
+      - name : Upload packages
+        uses: actions/upload-artifact@master
+        if: always()
         with:
-          repo_token: "${{ secrets.UPLOAD_KEY }}"
-          prerelease: false
-          files: |
-            /opt/bin/*.trx
+          name: Padavan-packages
+          path: /opt/bin
